@@ -940,9 +940,9 @@ pre .javascript .function {
   display: inline-block;
   padding: 0 20px;
   font-size: 14px;
-  color: #555;
+  color: #29c360;
   background: #fff;
-  border: 2px solid #555;
+  border: 2px solid #29c360;
   text-decoration: none;
   border-radius: 2px;
   transition-property: background-color;
@@ -952,9 +952,9 @@ pre .javascript .function {
   line-height: 2;
 }
 .btn:hover {
-  border-color: #222;
+  border-color: #29c360;
   color: #fff;
-  background: #222;
+  background: #29c360;
 }
 .btn +.btn {
   margin: 0 0 8px 8px;
@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9f4dec;
+  background: #60558b;
 }
 .links-of-blogroll {
   font-size: 13px;

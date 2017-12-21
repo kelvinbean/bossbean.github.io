@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中">
+<meta name="description" content="在开发vue项目的时候，在开发项目的时候，启动的本地服务器要与后端人员进行联调的时候就会出现跨域问题。但是实际正式项目中并不用跨域，所以这里要进行开发环境的代理设置。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FileReader的使用">
-<meta property="og:url" content="http://yoursite.com/2017/12/06/FileReader的使用/index.html">
+<meta property="og:title" content="vue-cli设置跨域">
+<meta property="og:url" content="http://yoursite.com/2017/12/21/vue-cli设置跨域/index.html">
 <meta property="og:site_name" content="波斯豆">
-<meta property="og:description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中断读取 readAsBinaryString  file">
+<meta property="og:description" content="在开发vue项目的时候，在开发项目的时候，启动的本地服务器要与后端人员进行联调的时候就会出现跨域问题。但是实际正式项目中并不用跨域，所以这里要进行开发环境的代理设置。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/fileReader/FileReader_source.png">
-<meta property="og:updated_time" content="2017-12-07T05:42:40.294Z">
+<meta property="og:updated_time" content="2017-12-21T07:40:58.029Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FileReader的使用">
-<meta name="twitter:description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中断读取 readAsBinaryString  file">
-<meta name="twitter:image" content="http://yoursite.com/images/fileReader/FileReader_source.png">
+<meta name="twitter:title" content="vue-cli设置跨域">
+<meta name="twitter:description" content="在开发vue项目的时候，在开发项目的时候，启动的本地服务器要与后端人员进行联调的时候就会出现跨域问题。但是实际正式项目中并不用跨域，所以这里要进行开发环境的代理设置。">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/06/FileReader的使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/21/vue-cli设置跨域/"/>
 
 
 
 
 
-  <title>FileReader的使用 | 波斯豆</title>
+  <title>vue-cli设置跨域 | 波斯豆</title>
   
 
 
@@ -235,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/FileReader的使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/21/vue-cli设置跨域/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="豆">
@@ -252,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">FileReader的使用</h1>
+          <h1 class="post-title" itemprop="name headline">vue-cli设置跨域</h1>
         
 
         <div class="post-meta">
@@ -264,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T16:53:11+08:00">
-                2017-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-21T14:52:02+08:00">
+                2017-12-21
               </time>
             
 
@@ -302,32 +300,27 @@
       
 
       
-        <p>FileReader是HTML5就已经提出的一个用于处理上传文件的对象。</p>
-<p>它使得我们在处理文件上变得更加简单了。</p>
-<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><h3 id="调用FileReader实例对象的方法"><a href="#调用FileReader实例对象的方法" class="headerlink" title="调用FileReader实例对象的方法"></a>调用FileReader实例对象的方法</h3><pre><code>方法名              参数                 描述
-abort               none                中断读取
-readAsBinaryString  file                将文件读取为二进制码
-readAsDataURL       file                将文件读取为 DataURL
-readAsText          file, [encoding]    将文件读取为文本
-</code></pre><a id="more"></a>
-<p>readAsText：该方法有两个参数，其中第二个参数是文本的编码方式，默认值为 UTF-8。<br>这个方法非常容易理解，将文件以文本方式读取，读取的结果即是这个文本文件中的内容。<br>readAsBinaryString：该方法将文件读取为二进制字符串，通常我们将它传送到后端，后端可以通过这段字符串存储文件。<br>readAsDataURL：这是例子程序中用到的方法，该方法将文件读取为一段以 data: 开头的字符串，这段字符串的实质就是 Data URL，<br>Data URL是一种将小文件直接嵌入文档的方案。这里的小文件通常是指图像与 html 等格式的文件。</p>
-<h3 id="处理事件"><a href="#处理事件" class="headerlink" title="处理事件"></a>处理事件</h3><p>FileReader 包含了一套完整的事件模型，用于捕获读取文件时的状态，下面这个表格归纳了这些事件。</p>
-<pre><code>事件         描述
-onabort      中断时触发
-onerror      出错时触发
-onload       文件读取成功完成时触发
-onloadend    读取完成触发，无论成功或失败
-onloadstart  读取开始时触发
-onprogress   读取中
-</code></pre><h2 id="实例运用"><a href="#实例运用" class="headerlink" title="实例运用"></a>实例运用</h2><h3 id="上传文件显示图片"><a href="#上传文件显示图片" class="headerlink" title="上传文件显示图片"></a>上传文件显示图片</h3><p>一般的上传图片的处理都是把文件提交上去。之后让后端返回一个完整的url。然后再生成img标签，把url填进去。从而显示上传的图片。</p>
-<p>那如果想要一上传，不需要等待服务器响应就显示出上传的图片这要这么做呢？</p>
-<p>可以使用如下的方法:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">html代码：</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"file"</span> id=<span class="string">"file"</span> onchange=<span class="string">"fileChange(this)"</span>&gt;</span><br><span class="line">&lt;div id=<span class="string">"result"</span>&gt;&lt;/div&gt;</span><br><span class="line">用onchange绑定一个叫fileChange的<span class="keyword">function</span>,把本对象传入</span><br><span class="line"></span><br><span class="line">js代码：</span><br><span class="line"><span class="keyword">function</span> fileChange(<span class="built_in">source</span>)&#123;</span><br><span class="line">    console.log(source.files)</span><br><span class="line">    var file = source.files[0];</span><br><span class="line">    var reader = new FileReader();</span><br><span class="line">    reader.onloadend = <span class="function"><span class="title">function</span></span>()&#123;//reader读取完成后触发，无论成功或失败</span><br><span class="line">        console.log(this.result);//读取完成后的结果在result里获取</span><br><span class="line">        var img = new Image();</span><br><span class="line">        img.src = this.result;</span><br><span class="line">        document.getElementById(<span class="string">'result'</span>).append(img);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    reader.readAsDataURL(file);//读取文件As DataURL,触发onload和ondloadend，无论读取成功或失败，方法并不会返回读取结果，这一结果存储在 result属性中。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如下是打印出来的source.files的信息</p>
-<p><img src="/images/fileReader/FileReader_source.png" alt="Image text"></p>
-<p>其实就是个类似数组的对象，有最后的修改日期信息，文件名称，文件大小，文件的MIME类型等</p>
-<p>上面的代码。只是简单举个例子，那文件数组的第一个对象，然后实例一个FileReader对象。<br>然后再给reader绑定一个加载后的时间。然后通过reader.readAsDataURL(file)把刚刚取到的第一个对象传入。readAsDataURL加载结束后就会触发刚刚上面绑定的onloadend方法。</p>
-<p>onloadend可以通过this.result查看结果。<br>这里获取到的就是要给img需要的url。<br>其实readAsDataURLjiu就是把这个文件转出base64的格式然后创建img.把图片加载到div里任务就完成了。</p>
+        <p>在开发vue项目的时候，在开发项目的时候，启动的本地服务器要与后端人员进行联调的时候就会出现跨域问题。<br>但是实际正式项目中并不用跨域，所以这里要进行开发环境的代理设置。</p>
+<a id="more"></a>
+<h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><p>vue-cli项目下，</p>
+<p>修改 config/index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    ...</span><br><span class="line">    dev:&#123;</span><br><span class="line"></span><br><span class="line">       ...</span><br><span class="line"></span><br><span class="line">        proxyTable: &#123;//加上这项来设置代理</span><br><span class="line">            &apos;/bean&apos;:&#123;</span><br><span class="line">                target: &apos;http://www.bossbean.com/&apos;, //目标地址</span><br><span class="line">                changeOrigin: true, //必须设置为true</span><br><span class="line">                pathRewrite: &#123; //一些需要替换的接口，没有需要替换的就不用写</span><br><span class="line">                  &apos;^/list&apos;: &apos;/bean_list&apos;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>加上之后再重新启动服务，这样就完美解决跨域的问题。</p>
+<p>其实原理是利用了<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">http-proxy-middleware</a>来做了一个路由的映射，这个在vue-cli脚手架里已经封装进去了，所以只需要在config/index.js上修改即可达到效果。</p>
+<p>优点：各个浏览器都可以适用，无需设置浏览器跨域</p>
+<p>缺点：每次切换环境时，都需要重新启动服务。</p>
+<h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><p>第二种方法就是设置浏览器，让它支持跨域的请求。<br>其实这个浏览器的快捷方式，用这个快捷方式打开的，支持跨域请求。</p>
+<p>下面是设置谷歌浏览器的跨域方法：</p>
+<pre><code>1.49版本之前的跨域。 --disable-web-security 和exe要有一个空格。
+2.49版本之后的跨域。
+      1.在电脑上新建一个目录，例如：C:\MyChromeDevUserData
+      2.在属性页面中的目标输入框里加上   --disable-web-security --user-data-dir=C:\MyChromeDevUserData，--user-data-dir的值就是刚才新建的目录。
+      3.点击应用和确定后关闭属性页面，并打开chrome浏览器。
+再次打开chrome，发现有“--disable-web-security”相关的提示，说明chrome又能正常跨域工作了。
+注： 跨域成功后，首页换成了google的welcome页面，同时原来收藏的链接和历史记录都不见了，而C:\MyChromeDevUserData目录下则生成了新的个人信息相关的文件
+</code></pre><p>而ie浏览器的跨域方法上面可以去搜下，至于火狐浏览器的跨域，在现在较新的版本已经无法再设置了，以前旧版本还可以设置。</p>
+<p>优点：每次切换环境，无需重启服务。</p>
+<p>缺点：每个浏览器的跨域方法都不一样，而且要把设置了跨域的快捷方式与没设置的区别开。</p>
 
       
     </div>
@@ -352,15 +345,15 @@ onprogress   读取中
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/21/浏览器tab切换事件处理/" rel="next" title="浏览器tab切换事件处理">
+                <i class="fa fa-chevron-left"></i> 浏览器tab切换事件处理
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/07/答对6个算我输/" rel="prev" title="答对6个算我输。">
-                答对6个算我输。 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -494,7 +487,7 @@ onprogress   读取中
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用FileReader实例对象的方法"><span class="nav-number">1.1.</span> <span class="nav-text">调用FileReader实例对象的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理事件"><span class="nav-number">1.2.</span> <span class="nav-text">处理事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例运用"><span class="nav-number">2.</span> <span class="nav-text">实例运用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上传文件显示图片"><span class="nav-number">2.1.</span> <span class="nav-text">上传文件显示图片</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1"><span class="nav-number">1.</span> <span class="nav-text">方法1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2"><span class="nav-number">2.</span> <span class="nav-text">方法2</span></a></li></ol></div>
             
 
           </div>

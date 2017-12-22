@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中">
+<meta name="description" content="其实数组真的有很多妙用的方法来写很多，而且如果巧妙的使用起来，可以用简单的一句代码来实现一些比较复杂的功能。 就像一个简单的功能，不同的人写的代码，有的只要一行，但是有的人可能需要十行。 因此我们都尽量做到用最少的代码实现同样的功能。 这篇文章用来汇总，我遇到觉得比较好的数组写法以及数组的一些相关知识。只要有发现新的写">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FileReader的使用">
-<meta property="og:url" content="http://yoursite.com/2017/12/06/FileReader的使用/index.html">
+<meta property="og:title" content="Array数组简单写法汇总">
+<meta property="og:url" content="http://yoursite.com/2017/12/22/Array数组简单写法汇总/index.html">
 <meta property="og:site_name" content="波斯豆">
-<meta property="og:description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中断读取 readAsBinaryString  file">
+<meta property="og:description" content="其实数组真的有很多妙用的方法来写很多，而且如果巧妙的使用起来，可以用简单的一句代码来实现一些比较复杂的功能。 就像一个简单的功能，不同的人写的代码，有的只要一行，但是有的人可能需要十行。 因此我们都尽量做到用最少的代码实现同样的功能。 这篇文章用来汇总，我遇到觉得比较好的数组写法以及数组的一些相关知识。只要有发现新的写法，会不断更新这篇文章。 Array.apply(null, {length:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/fileReader/FileReader_source.png">
-<meta property="og:updated_time" content="2017-12-07T05:42:40.294Z">
+<meta property="og:updated_time" content="2017-12-22T06:55:11.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FileReader的使用">
-<meta name="twitter:description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中断读取 readAsBinaryString  file">
-<meta name="twitter:image" content="http://yoursite.com/images/fileReader/FileReader_source.png">
+<meta name="twitter:title" content="Array数组简单写法汇总">
+<meta name="twitter:description" content="其实数组真的有很多妙用的方法来写很多，而且如果巧妙的使用起来，可以用简单的一句代码来实现一些比较复杂的功能。 就像一个简单的功能，不同的人写的代码，有的只要一行，但是有的人可能需要十行。 因此我们都尽量做到用最少的代码实现同样的功能。 这篇文章用来汇总，我遇到觉得比较好的数组写法以及数组的一些相关知识。只要有发现新的写法，会不断更新这篇文章。 Array.apply(null, {length:">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/06/FileReader的使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/22/Array数组简单写法汇总/"/>
 
 
 
 
 
-  <title>FileReader的使用 | 波斯豆</title>
+  <title>Array数组简单写法汇总 | 波斯豆</title>
   
 
 
@@ -235,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/FileReader的使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/22/Array数组简单写法汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="豆">
@@ -252,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">FileReader的使用</h1>
+          <h1 class="post-title" itemprop="name headline">Array数组简单写法汇总</h1>
         
 
         <div class="post-meta">
@@ -264,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T16:53:11+08:00">
-                2017-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T14:26:59+08:00">
+                2017-12-22
               </time>
             
 
@@ -302,32 +300,16 @@
       
 
       
-        <p>FileReader是HTML5就已经提出的一个用于处理上传文件的对象。</p>
-<p>它使得我们在处理文件上变得更加简单了。</p>
-<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><h3 id="调用FileReader实例对象的方法"><a href="#调用FileReader实例对象的方法" class="headerlink" title="调用FileReader实例对象的方法"></a>调用FileReader实例对象的方法</h3><pre><code>方法名              参数                 描述
-abort               none                中断读取
-readAsBinaryString  file                将文件读取为二进制码
-readAsDataURL       file                将文件读取为 DataURL
-readAsText          file, [encoding]    将文件读取为文本
-</code></pre><a id="more"></a>
-<p>readAsText：该方法有两个参数，其中第二个参数是文本的编码方式，默认值为 UTF-8。<br>这个方法非常容易理解，将文件以文本方式读取，读取的结果即是这个文本文件中的内容。<br>readAsBinaryString：该方法将文件读取为二进制字符串，通常我们将它传送到后端，后端可以通过这段字符串存储文件。<br>readAsDataURL：这是例子程序中用到的方法，该方法将文件读取为一段以 data: 开头的字符串，这段字符串的实质就是 Data URL，<br>Data URL是一种将小文件直接嵌入文档的方案。这里的小文件通常是指图像与 html 等格式的文件。</p>
-<h3 id="处理事件"><a href="#处理事件" class="headerlink" title="处理事件"></a>处理事件</h3><p>FileReader 包含了一套完整的事件模型，用于捕获读取文件时的状态，下面这个表格归纳了这些事件。</p>
-<pre><code>事件         描述
-onabort      中断时触发
-onerror      出错时触发
-onload       文件读取成功完成时触发
-onloadend    读取完成触发，无论成功或失败
-onloadstart  读取开始时触发
-onprogress   读取中
-</code></pre><h2 id="实例运用"><a href="#实例运用" class="headerlink" title="实例运用"></a>实例运用</h2><h3 id="上传文件显示图片"><a href="#上传文件显示图片" class="headerlink" title="上传文件显示图片"></a>上传文件显示图片</h3><p>一般的上传图片的处理都是把文件提交上去。之后让后端返回一个完整的url。然后再生成img标签，把url填进去。从而显示上传的图片。</p>
-<p>那如果想要一上传，不需要等待服务器响应就显示出上传的图片这要这么做呢？</p>
-<p>可以使用如下的方法:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">html代码：</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"file"</span> id=<span class="string">"file"</span> onchange=<span class="string">"fileChange(this)"</span>&gt;</span><br><span class="line">&lt;div id=<span class="string">"result"</span>&gt;&lt;/div&gt;</span><br><span class="line">用onchange绑定一个叫fileChange的<span class="keyword">function</span>,把本对象传入</span><br><span class="line"></span><br><span class="line">js代码：</span><br><span class="line"><span class="keyword">function</span> fileChange(<span class="built_in">source</span>)&#123;</span><br><span class="line">    console.log(source.files)</span><br><span class="line">    var file = source.files[0];</span><br><span class="line">    var reader = new FileReader();</span><br><span class="line">    reader.onloadend = <span class="function"><span class="title">function</span></span>()&#123;//reader读取完成后触发，无论成功或失败</span><br><span class="line">        console.log(this.result);//读取完成后的结果在result里获取</span><br><span class="line">        var img = new Image();</span><br><span class="line">        img.src = this.result;</span><br><span class="line">        document.getElementById(<span class="string">'result'</span>).append(img);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    reader.readAsDataURL(file);//读取文件As DataURL,触发onload和ondloadend，无论读取成功或失败，方法并不会返回读取结果，这一结果存储在 result属性中。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如下是打印出来的source.files的信息</p>
-<p><img src="/images/fileReader/FileReader_source.png" alt="Image text"></p>
-<p>其实就是个类似数组的对象，有最后的修改日期信息，文件名称，文件大小，文件的MIME类型等</p>
-<p>上面的代码。只是简单举个例子，那文件数组的第一个对象，然后实例一个FileReader对象。<br>然后再给reader绑定一个加载后的时间。然后通过reader.readAsDataURL(file)把刚刚取到的第一个对象传入。readAsDataURL加载结束后就会触发刚刚上面绑定的onloadend方法。</p>
-<p>onloadend可以通过this.result查看结果。<br>这里获取到的就是要给img需要的url。<br>其实readAsDataURLjiu就是把这个文件转出base64的格式然后创建img.把图片加载到div里任务就完成了。</p>
+        <p>其实数组真的有很多妙用的方法来写很多，而且如果巧妙的使用起来，可以用简单的一句代码来实现一些比较复杂的功能。</p>
+<p>就像一个简单的功能，不同的人写的代码，有的只要一行，但是有的人可能需要十行。</p>
+<p>因此我们都尽量做到用最少的代码实现同样的功能。</p>
+<p>这篇文章用来汇总，我遇到觉得比较好的数组写法以及数组的一些相关知识。只要有发现新的写法，会不断更新这篇文章。</p>
+<h3 id="Array-apply-null-length-10-和Array-10-有什么区别"><a href="#Array-apply-null-length-10-和Array-10-有什么区别" class="headerlink" title="Array.apply(null, {length: 10})和Array(10)有什么区别?"></a>Array.apply(null, {length: 10})和Array(10)有什么区别?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr1 = Array.apply(null, &#123;length: 10&#125;);</span><br><span class="line">var arr2 = Array(10);</span><br><span class="line">0 <span class="keyword">in</span> arr1  //<span class="literal">true</span></span><br><span class="line">0 <span class="keyword">in</span> arr2  //<span class="literal">false</span></span><br><span class="line">arr1.map(<span class="keyword">function</span>(item, index)&#123;console.log(index)&#125;) //0, 1, 2, 3...</span><br><span class="line">arr2.map(<span class="keyword">function</span>(item, index)&#123;console.log(index)&#125;) //直接不打印，因为只是一个空数组。根本不循环</span><br></pre></td></tr></table></figure>
+<p>解释<br>首先Array(1,2,3,4)，你知道的吧,生成一个数组[1,2,3,4]<br>然后是apply的问题,要求第二个参数是一个数组<br>那么Array.apply(null,[1,2,3,4])生成的和上述的一样的[1,2,3,4]数组<br>但apply有个奇怪的地方,当第二个参数是一个带有length属性的对象时,会当成一个数组使用<br>所以Array.apply(null,{length:4})生成[undefined,undefined,undefined,undefined]<br>相当于Array.apply(null,[undefined,undefined,undefined,undefined])</p>
+<p>所以如果要快速生成一个1-100的递增数组。以下是方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var result = Array.apply(null,&#123;length:100&#125;).map(<span class="keyword">function</span>(item,index)&#123;</span><br><span class="line">    <span class="built_in">return</span> index+1;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var result = Array.apply(null,Array(100)).map(<span class="keyword">function</span>(item,index)&#123;</span><br><span class="line">    <span class="built_in">return</span> index+1;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="随机生成10个1-100的不重复随机数"><a href="#随机生成10个1-100的不重复随机数" class="headerlink" title="随机生成10个1-100的不重复随机数"></a>随机生成10个1-100的不重复随机数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr = new Array(100)</span><br><span class="line">.fill(0)</span><br><span class="line">.map((v,i) =&gt; i+1)</span><br><span class="line">.sort(()=&gt;0.5-Math.random())</span><br><span class="line">.filter((v,i) =&gt; i&lt;10)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -352,15 +334,15 @@ onprogress   读取中
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/21/vue-cli设置跨域/" rel="next" title="vue-cli设置跨域">
+                <i class="fa fa-chevron-left"></i> vue-cli设置跨域
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/07/答对6个算我输/" rel="prev" title="答对6个算我输。">
-                答对6个算我输。 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -494,7 +476,7 @@ onprogress   读取中
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用FileReader实例对象的方法"><span class="nav-number">1.1.</span> <span class="nav-text">调用FileReader实例对象的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理事件"><span class="nav-number">1.2.</span> <span class="nav-text">处理事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例运用"><span class="nav-number">2.</span> <span class="nav-text">实例运用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上传文件显示图片"><span class="nav-number">2.1.</span> <span class="nav-text">上传文件显示图片</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-apply-null-length-10-和Array-10-有什么区别"><span class="nav-number">1.</span> <span class="nav-text">Array.apply(null, {length: 10})和Array(10)有什么区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机生成10个1-100的不重复随机数"><span class="nav-number">2.</span> <span class="nav-text">随机生成10个1-100的不重复随机数</span></a></li></ol></div>
             
 
           </div>

@@ -23,6 +23,8 @@ title: Array数组简单写法汇总
     arr2.map(function(item, index){console.log(index)}) //直接不打印，因为只是一个空数组。根本不循环
 ```
 
+<!-- More -->
+
 解释
 首先Array(1,2,3,4)，你知道的吧,生成一个数组[1,2,3,4]
 然后是apply的问题,要求第二个参数是一个数组

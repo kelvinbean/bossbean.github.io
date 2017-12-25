@@ -169,7 +169,14 @@
           {% endif %}
         </div>
       {% endif %}
-
+      <div style="margin-top:20px">
+        <span>网站吐槽：</span>
+        <a href="https://support.qq.com/products/20694" target="_blank">
+          <span class="btn">
+            <i class="fa fa-comment-o"></i>
+          </span>
+        </a>
+      </div>
     </div>
   </aside>
 {% endmacro %}

@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="vue在2.x版本就取消了组件之间数据的双向影响。因此如果想要实现这个功能。使用以下方法来解决。 解决方法以下我使用一个自己写的组件其中一部分代码来展示一下解决办法">
+<meta name="description" content="vue在2.x版本就取消了组件之间数据的双向影响。因此如果想要实现这个功能。使用以下方法来解决。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue 2.x的组件之间双向绑定">
 <meta property="og:url" content="http://yoursite.com/2017/12/20/vue2.x的组件双向绑定/index.html">
 <meta property="og:site_name" content="波斯豆">
-<meta property="og:description" content="vue在2.x版本就取消了组件之间数据的双向影响。因此如果想要实现这个功能。使用以下方法来解决。 解决方法以下我使用一个自己写的组件其中一部分代码来展示一下解决办法">
+<meta property="og:description" content="vue在2.x版本就取消了组件之间数据的双向影响。因此如果想要实现这个功能。使用以下方法来解决。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T03:02:30.028Z">
+<meta property="og:image" content="http://yoursite.com/images/banner/banner2.jpg">
+<meta property="og:updated_time" content="2017-12-26T06:11:09.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue 2.x的组件之间双向绑定">
-<meta name="twitter:description" content="vue在2.x版本就取消了组件之间数据的双向影响。因此如果想要实现这个功能。使用以下方法来解决。 解决方法以下我使用一个自己写的组件其中一部分代码来展示一下解决办法">
+<meta name="twitter:description" content="vue在2.x版本就取消了组件之间数据的双向影响。因此如果想要实现这个功能。使用以下方法来解决。">
+<meta name="twitter:image" content="http://yoursite.com/images/banner/banner2.jpg">
 
 
 
@@ -300,9 +302,10 @@
       
 
       
-        <p>vue在2.x版本就取消了组件之间数据的双向影响。因此如果想要实现这个功能。使用以下方法来解决。</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>以下我使用一个自己写的组件其中一部分代码来展示一下解决办法</p>
+        <p><img src="/images/banner/banner2.jpg" alt="Image text"></p>
+<p>vue在2.x版本就取消了组件之间数据的双向影响。因此如果想要实现这个功能。使用以下方法来解决。</p>
 <a id="more"></a>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>以下我使用一个自己写的组件其中一部分代码来展示一下解决办法</p>
 <h3 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h3><p>假设子组件的名称为popup<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;popup v-model=<span class="string">"showModel"</span>&gt;&lt;/popup&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    import popup from <span class="string">'popup'</span></span><br><span class="line">    <span class="built_in">export</span> default&#123;</span><br><span class="line">        <span class="function"><span class="title">data</span></span>()&#123;</span><br><span class="line">            <span class="built_in">return</span> &#123;</span><br><span class="line">                showModel:<span class="literal">false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components:&#123;</span><br><span class="line">            popup</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
 <h3 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div v-if=<span class="string">"visible"</span>&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="built_in">export</span> default&#123;</span><br><span class="line">        porps:&#123;</span><br><span class="line">            value:&#123;</span><br><span class="line">                <span class="built_in">type</span>:Boolean,</span><br><span class="line">                default:<span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="title">data</span></span>()&#123;</span><br><span class="line">            <span class="built_in">return</span> &#123;</span><br><span class="line">                visible:<span class="literal">false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        watch:&#123;</span><br><span class="line">            value(val) &#123;</span><br><span class="line">                this.visible = val;</span><br><span class="line">            &#125;,</span><br><span class="line">            visible(val) &#123;</span><br><span class="line">                this.<span class="variable">$emit</span>(<span class="string">'input'</span>, val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>讲解一下，父级的调用子组件是，加入的v-model相当于给子组件传入一个value属性。然后监听父级的value值改变时，修改子组件的visible属性。</p>

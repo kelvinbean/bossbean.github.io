@@ -2,10 +2,6 @@
 title: FileReader的使用
 ---
 
-![Image text](/images/fileReader/banner.jpg)
-
-<!--  More -->
-
 FileReader是HTML5就已经提出的一个用于处理上传文件的对象。
 
 它使得我们在处理文件上变得更加简单了。
@@ -21,6 +17,7 @@ FileReader是HTML5就已经提出的一个用于处理上传文件的对象。
     readAsDataURL       file                将文件读取为 DataURL
     readAsText          file, [encoding]    将文件读取为文本
 
+<!--  More -->
 
 readAsText：该方法有两个参数，其中第二个参数是文本的编码方式，默认值为 UTF-8。
 这个方法非常容易理解，将文件以文本方式读取，读取的结果即是这个文本文件中的内容。

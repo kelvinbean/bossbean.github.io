@@ -79,15 +79,18 @@
 
 
 
+<meta name="description" content="这些题是我之前很久写的一篇很简单的博文。现在拿出来炒冷饭。 感觉还是可以从中复习的一点小知识。 那么下面开始咯。 总共6道题。下面是答案，做完再看看。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="答对6个算我输。">
 <meta property="og:url" content="http://yoursite.com/2017/12/07/答对6个算我输/index.html">
 <meta property="og:site_name" content="波斯豆">
+<meta property="og:description" content="这些题是我之前很久写的一篇很简单的博文。现在拿出来炒冷饭。 感觉还是可以从中复习的一点小知识。 那么下面开始咯。 总共6道题。下面是答案，做完再看看。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/banner/banner1.jpg">
-<meta property="og:updated_time" content="2017-12-26T06:11:04.487Z">
+<meta property="og:updated_time" content="2017-12-26T06:28:00.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="答对6个算我输。">
+<meta name="twitter:description" content="这些题是我之前很久写的一篇很简单的博文。现在拿出来炒冷饭。 感觉还是可以从中复习的一点小知识。 那么下面开始咯。 总共6道题。下面是答案，做完再看看。">
 <meta name="twitter:image" content="http://yoursite.com/images/banner/banner1.jpg">
 
 
@@ -299,12 +302,11 @@
       
 
       
-        <p><img src="/images/banner/banner1.jpg" alt="Image text"></p>
-<a id="more"></a>
-<p>这些题是我之前很久写的一篇很简单的博文。现在拿出来炒冷饭。</p>
+        <p>这些题是我之前很久写的一篇很简单的博文。现在拿出来炒冷饭。</p>
 <p>感觉还是可以从中复习的一点小知识。</p>
 <p>那么下面开始咯。</p>
 <p>总共6道题。下面是答案，做完再看看。</p>
+<a id="more"></a>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h3><p>[“1”,”2”,”3”].map(parseInt) 为多少？</p>
 <h3 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h3><p>console.log(0.1+0.2 == 0.3)  输出什么？</p>
 <h3 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = b =10;</span><br><span class="line"> (<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">     var a = b = 20;</span><br><span class="line">  &#125;)();</span><br><span class="line">console.log(a);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
@@ -315,7 +317,8 @@
 isNaN(&apos;aaa&apos;) = ?
 </code></pre><h3 id="问题6"><a href="#问题6" class="headerlink" title="问题6"></a>问题6</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var name = <span class="string">'Tom'</span>;</span><br><span class="line"> <span class="keyword">function</span>  <span class="function"><span class="title">a</span></span> ()&#123;</span><br><span class="line">      var name = <span class="string">'Peter'</span>;</span><br><span class="line">      <span class="built_in">return</span></span><br><span class="line">      &#123;</span><br><span class="line">          name : name</span><br><span class="line">      &#125;;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>问：a().name = ?</p>
-<h2 id="下面是答案"><a href="#下面是答案" class="headerlink" title="下面是答案"></a>下面是答案</h2><h3 id="答案1"><a href="#答案1" class="headerlink" title="答案1"></a>答案1</h3><p>[1,NaN,NaN]</p>
+<h2 id="下面是答案"><a href="#下面是答案" class="headerlink" title="下面是答案"></a>下面是答案</h2><p><img src="/images/banner/banner1.jpg" alt="Image text"></p>
+<h3 id="答案1"><a href="#答案1" class="headerlink" title="答案1"></a>答案1</h3><p>[1,NaN,NaN]</p>
 <p>解析：</p>
 <p>这题要了解map方法和parseInt这两个方法。<br>map 的一般使用是    arr.map(function(item,i){})<br>map的回调方法里面的第一个参数是键值，第二个参数是键名。<br>而parseInt这个方法也是有两个参数的，第二个参数是代表的是进制数。<br>当这个进制数不传或者传0的时候，默认为10进制。<br>所以这里面遍历的时候，传入的是数组的默认下标 0,1,2<br>所以遍历的结果是数组的第一个元素是可以正常显示。传入的键值为1，键名为0  输出1<br>而第二次  传入键值为2，键名为1  输出NaN  因为1进制的不可能会大于1的。<br>第三次传入键值为3，键名为2  输出了NaN  同样的，二进制是不会出现3的</p>
 <h3 id="答案2"><a href="#答案2" class="headerlink" title="答案2"></a>答案2</h3><p>false</p>

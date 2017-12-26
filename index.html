@@ -553,9 +553,8 @@
 
       
         
-          <p>有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。<br>这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。</p>
-<p>其实很多的网站是没有处理这个问题，其实也可以理解。因为只要在原先的页面点击一些操作，或许就会自动变成B用户的信息。<br>但是如果是单页面的网站，这时候你每次的点击其实都不会去刷新页面。这时候我们就可以通过一个监听事件来监听页面时候切换到当前页。</p>
-<p>登登登登，这个方法就是visibilitychange。</p>
+          <p><img src="/images/banner/banner3.jpg" alt="Image text"></p>
+<p>有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。<br>这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/21/浏览器tab切换事件处理/#more" rel="contents">
@@ -930,7 +929,10 @@
 
       
         
-          <p><img src="/images/banner/banner1.jpg" alt="Image text"></p>
+          <p>这些题是我之前很久写的一篇很简单的博文。现在拿出来炒冷饭。</p>
+<p>感觉还是可以从中复习的一点小知识。</p>
+<p>那么下面开始咯。</p>
+<p>总共6道题。下面是答案，做完再看看。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/07/答对6个算我输/#more" rel="contents">
@@ -1054,7 +1056,14 @@
 
       
         
-          <p><img src="/images/fileReader/banner.jpg" alt="Image text"></p>
+          <p>FileReader是HTML5就已经提出的一个用于处理上传文件的对象。</p>
+<p>它使得我们在处理文件上变得更加简单了。</p>
+<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><h3 id="调用FileReader实例对象的方法"><a href="#调用FileReader实例对象的方法" class="headerlink" title="调用FileReader实例对象的方法"></a>调用FileReader实例对象的方法</h3><pre><code>方法名              参数                 描述
+abort               none                中断读取
+readAsBinaryString  file                将文件读取为二进制码
+readAsDataURL       file                将文件读取为 DataURL
+readAsText          file, [encoding]    将文件读取为文本
+</code></pre>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/06/FileReader的使用/#more" rel="contents">

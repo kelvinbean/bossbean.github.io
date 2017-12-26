@@ -79,17 +79,19 @@
 
 
 
+<meta name="description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FileReader的使用">
 <meta property="og:url" content="http://yoursite.com/2017/12/06/FileReader的使用/index.html">
 <meta property="og:site_name" content="波斯豆">
+<meta property="og:description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中断读取 readAsBinaryString  file">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/fileReader/banner.jpg">
 <meta property="og:image" content="http://yoursite.com/images/fileReader/FileReader_source.png">
-<meta property="og:updated_time" content="2017-12-26T06:12:04.215Z">
+<meta property="og:updated_time" content="2017-12-26T06:23:32.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FileReader的使用">
-<meta name="twitter:image" content="http://yoursite.com/images/fileReader/banner.jpg">
+<meta name="twitter:description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中断读取 readAsBinaryString  file">
+<meta name="twitter:image" content="http://yoursite.com/images/fileReader/FileReader_source.png">
 
 
 
@@ -300,16 +302,15 @@
       
 
       
-        <p><img src="/images/fileReader/banner.jpg" alt="Image text"></p>
-<a id="more"></a>
-<p>FileReader是HTML5就已经提出的一个用于处理上传文件的对象。</p>
+        <p>FileReader是HTML5就已经提出的一个用于处理上传文件的对象。</p>
 <p>它使得我们在处理文件上变得更加简单了。</p>
 <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><h3 id="调用FileReader实例对象的方法"><a href="#调用FileReader实例对象的方法" class="headerlink" title="调用FileReader实例对象的方法"></a>调用FileReader实例对象的方法</h3><pre><code>方法名              参数                 描述
 abort               none                中断读取
 readAsBinaryString  file                将文件读取为二进制码
 readAsDataURL       file                将文件读取为 DataURL
 readAsText          file, [encoding]    将文件读取为文本
-</code></pre><p>readAsText：该方法有两个参数，其中第二个参数是文本的编码方式，默认值为 UTF-8。<br>这个方法非常容易理解，将文件以文本方式读取，读取的结果即是这个文本文件中的内容。<br>readAsBinaryString：该方法将文件读取为二进制字符串，通常我们将它传送到后端，后端可以通过这段字符串存储文件。<br>readAsDataURL：这是例子程序中用到的方法，该方法将文件读取为一段以 data: 开头的字符串，这段字符串的实质就是 Data URL，<br>Data URL是一种将小文件直接嵌入文档的方案。这里的小文件通常是指图像与 html 等格式的文件。</p>
+</code></pre><a id="more"></a>
+<p>readAsText：该方法有两个参数，其中第二个参数是文本的编码方式，默认值为 UTF-8。<br>这个方法非常容易理解，将文件以文本方式读取，读取的结果即是这个文本文件中的内容。<br>readAsBinaryString：该方法将文件读取为二进制字符串，通常我们将它传送到后端，后端可以通过这段字符串存储文件。<br>readAsDataURL：这是例子程序中用到的方法，该方法将文件读取为一段以 data: 开头的字符串，这段字符串的实质就是 Data URL，<br>Data URL是一种将小文件直接嵌入文档的方案。这里的小文件通常是指图像与 html 等格式的文件。</p>
 <h3 id="处理事件"><a href="#处理事件" class="headerlink" title="处理事件"></a>处理事件</h3><p>FileReader 包含了一套完整的事件模型，用于捕获读取文件时的状态，下面这个表格归纳了这些事件。</p>
 <pre><code>事件         描述
 onabort      中断时触发

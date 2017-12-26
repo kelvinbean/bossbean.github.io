@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。 其实很多的网站是没有处理这个问题，其实也可以理解。因为只要在原先的页面点击一些操作，或许就">
+<meta name="description" content="有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器tab切换事件处理">
 <meta property="og:url" content="http://yoursite.com/2017/12/21/浏览器tab切换事件处理/index.html">
 <meta property="og:site_name" content="波斯豆">
-<meta property="og:description" content="有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。 其实很多的网站是没有处理这个问题，其实也可以理解。因为只要在原先的页面点击一些操作，或许就会自动变成B用户的信息。但是如果是单页面的网站，这时候你每次的点击其实都不会去刷">
+<meta property="og:description" content="有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-21T02:58:16.088Z">
+<meta property="og:image" content="http://yoursite.com/images/banner/banner3.jpg">
+<meta property="og:updated_time" content="2017-12-26T06:25:43.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器tab切换事件处理">
-<meta name="twitter:description" content="有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。 其实很多的网站是没有处理这个问题，其实也可以理解。因为只要在原先的页面点击一些操作，或许就会自动变成B用户的信息。但是如果是单页面的网站，这时候你每次的点击其实都不会去刷">
+<meta name="twitter:description" content="有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。">
+<meta name="twitter:image" content="http://yoursite.com/images/banner/banner3.jpg">
 
 
 
@@ -300,10 +302,11 @@
       
 
       
-        <p>有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。<br>这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。</p>
+        <p><img src="/images/banner/banner3.jpg" alt="Image text"></p>
+<p>有这么一种情况。就是一个网站，你先登录了A用户，之后你再在同一浏览器打开一个tab页，登录了B用户。<br>这时候再切换原先的tab页。这时候该页面显示的还是A用户的信息。这时候除非你刷新，否则信息就一直不会变，不会更新成B用户的信息。</p>
+<a id="more"></a>
 <p>其实很多的网站是没有处理这个问题，其实也可以理解。因为只要在原先的页面点击一些操作，或许就会自动变成B用户的信息。<br>但是如果是单页面的网站，这时候你每次的点击其实都不会去刷新页面。这时候我们就可以通过一个监听事件来监听页面时候切换到当前页。</p>
 <p>登登登登，这个方法就是visibilitychange。</p>
-<a id="more"></a>
 <h3 id="visibilityState"><a href="#visibilityState" class="headerlink" title="visibilityState"></a>visibilityState</h3><p>在讲visibilitychange前，先介绍一下visibilityState属性</p>
 <p>document对象上有一个叫visibilityState的属性。代表这该页面是处于当前选中状态还是被隐藏起来。</p>
 <p>这个属性有两个值。<br>当前tab页被选中时，document.visibilityState 为 visible，否则为hidden</p>

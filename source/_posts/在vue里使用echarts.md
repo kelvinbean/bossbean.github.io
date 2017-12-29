@@ -1,5 +1,5 @@
 ---
-title: 在vue中使用echarts
+title: 在vue中使用Echarts
 ---
 
 最近项目需要做一些图表，如柱状图，圆饼图等等。
@@ -8,6 +8,7 @@ title: 在vue中使用echarts
 
 那今天我就来介绍一下怎么在vue项目中使用echarts。
 
+<!-- More -->
 
 ### vue-echarts-v3
 

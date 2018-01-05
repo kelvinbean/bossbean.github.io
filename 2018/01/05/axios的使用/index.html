@@ -84,12 +84,12 @@
 <meta property="og:title" content="如何使用axios来处理地狱回调">
 <meta property="og:url" content="http://yoursite.com/2018/01/05/axios的使用/index.html">
 <meta property="og:site_name" content="波斯豆">
-<meta property="og:description" content="axios是一个类似于ajax的工具。可以实现与后端数据交互。而且现在在vue官方也推荐使用axios来进行与后端的数据传递与交互。 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。 其实axios的使用非常简单。很多的文档，以及一些官方文档已经有很多详细的讲解。文档地址。我这里就不赘述了。 axios的好处我个人认为axios的好处，第一个可以处理">
+<meta property="og:description" content="axios是一个类似于ajax的工具。可以实现与后端数据交互。而且现在在vue官方也推荐使用axios来进行与后端的数据传递与交互。 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。 其实axios的使用非常简单。很多的文档，以及一些官方文档已经有很多详细的讲解。文档地址。我这里就不赘述了。这里主要讲axios的小小的使用技巧。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-05T09:29:06.406Z">
+<meta property="og:updated_time" content="2018-01-05T09:33:15.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用axios来处理地狱回调">
-<meta name="twitter:description" content="axios是一个类似于ajax的工具。可以实现与后端数据交互。而且现在在vue官方也推荐使用axios来进行与后端的数据传递与交互。 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。 其实axios的使用非常简单。很多的文档，以及一些官方文档已经有很多详细的讲解。文档地址。我这里就不赘述了。 axios的好处我个人认为axios的好处，第一个可以处理">
+<meta name="twitter:description" content="axios是一个类似于ajax的工具。可以实现与后端数据交互。而且现在在vue官方也推荐使用axios来进行与后端的数据传递与交互。 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。 其实axios的使用非常简单。很多的文档，以及一些官方文档已经有很多详细的讲解。文档地址。我这里就不赘述了。这里主要讲axios的小小的使用技巧。">
 
 
 
@@ -302,12 +302,23 @@
       
         <p>axios是一个类似于ajax的工具。可以实现与后端数据交互。而且现在在vue官方也推荐使用axios来进行与后端的数据传递与交互。</p>
 <p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</p>
-<p>其实axios的使用非常简单。很多的文档，以及一些官方文档已经有很多详细的讲解。<a href="https://www.npmjs.com/package/axios]" target="_blank" rel="noopener">文档地址</a>。我这里就不赘述了。</p>
-<h3 id="axios的好处"><a href="#axios的好处" class="headerlink" title="axios的好处"></a>axios的好处</h3><p>我个人认为axios的好处，第一个可以处理ajax的地狱回调问题。</p>
-<p>第二个就是可以多个请求同时发起，之后同时处理数据。如使用axios.all。</p>
-<p>我主要讲下axios是怎么处理地狱回调的。</p>
-<h3 id="地狱回调的处理"><a href="#地狱回调的处理" class="headerlink" title="地狱回调的处理"></a>地狱回调的处理</h3><p>所谓地狱回调，就用下面的代码让你自行体会。</p>
-<p>下面用jquery的ajax来举个例子</p>
+<p>其实axios的使用非常简单。很多的文档，以及一些官方文档已经有很多详细的讲解。<a href="https://www.npmjs.com/package/axios]" target="_blank" rel="noopener">文档地址</a>。我这里就不赘述了。这里主要讲axios的小小的使用技巧。</p>
+<!--  More  -- >
+
+### axios的好处
+
+我个人认为axios的好处，第一个可以处理ajax的地狱回调问题。
+
+第二个就是可以多个请求同时发起，之后同时处理数据。如使用axios.all。
+
+我主要讲下axios是怎么处理地狱回调的。
+
+### 地狱回调的处理
+
+所谓地狱回调，就用下面的代码让你自行体会。
+
+下面用jquery的ajax来举个例子
+
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.get(<span class="string">'/boss'</span>,<span class="keyword">function</span>(result)&#123;</span><br><span class="line">    $.get(<span class="string">'/bean'</span>,&#123;bossName:result.name&#125;,<span class="keyword">function</span>(result2)&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>这种代码一直写下去，就形成了我所形容的地狱回调。首先地狱回调会影响代码的阅读，而且容易出错，代码显得也不那么整洁。</p>
 <p>那如何处理axios按顺序等待上个请求完成以后再去执行对应的下个请求呢？</p>
@@ -328,7 +339,7 @@
 await 表示在这里等待promise返回结果了，再继续执行。
 await 后面跟着的应该是一个promise对象（当然，其他返回值也没关系，只是会立即执行，不过那样就没有意义了…）
 </code></pre><p>详细具体的说明可以自行搜索哦。</p>
-
+-->
       
     </div>
     
@@ -412,17 +423,8 @@ await 后面跟着的应该是一个promise对象（当然，其他返回值也�
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -484,22 +486,6 @@ await 后面跟着的应该是一个promise对象（当然，其他返回值也�
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#axios的好处"><span class="nav-number">1.</span> <span class="nav-text">axios的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地狱回调的处理"><span class="nav-number">2.</span> <span class="nav-text">地狱回调的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async和await"><span class="nav-number">3.</span> <span class="nav-text">async和await</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

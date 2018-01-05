@@ -8,7 +8,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 其实axios的使用非常简单。很多的文档，以及一些官方文档已经有很多详细的讲解。[文档地址](https://www.npmjs.com/package/axios])。我这里就不赘述了。这里主要讲axios的小小的使用技巧。
 
-<!--  More  -- >
+<!-- More -->
 
 ### axios的好处
 

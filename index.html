@@ -300,48 +300,16 @@
 
       
         
-          
-            <p>axios是一个类似于ajax的工具。可以实现与后端数据交互。而且现在在vue官方也推荐使用axios来进行与后端的数据传递与交互。</p>
-<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</p>
-<p>其实axios的使用非常简单。很多的文档，以及一些官方文档已经有很多详细的讲解。<a href="https://www.npmjs.com/package/axios]" target="_blank" rel="noopener">文档地址</a>。我这里就不赘述了。这里主要讲axios的小小的使用技巧。</p>
-<!--  More  -- >
-
-### axios的好处
-
-我个人认为axios的好处，第一个可以处理ajax的地狱回调问题。
-
-第二个就是可以多个请求同时发起，之后同时处理数据。如使用axios.all。
-
-我主要讲下axios是怎么处理地狱回调的。
-
-### 地狱回调的处理
-
-所谓地狱回调，就用下面的代码让你自行体会。
-
-下面用jquery的ajax来举个例子
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.get(<span class="string">'/boss'</span>,<span class="keyword">function</span>(result)&#123;</span><br><span class="line">    $.get(<span class="string">'/bean'</span>,&#123;bossName:result.name&#125;,<span class="keyword">function</span>(result2)&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>这种代码一直写下去，就形成了我所形容的地狱回调。首先地狱回调会影响代码的阅读，而且容易出错，代码显得也不那么整洁。</p>
-<p>那如何处理axios按顺序等待上个请求完成以后再去执行对应的下个请求呢？</p>
-<p>其实很简单。</p>
-<p>一般的axios是这样的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'/boss'</span>)</span><br><span class="line">.<span class="keyword">then</span>(res =&gt; &#123;</span><br><span class="line">    //处理数据</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>但是要继续传递下去，那就返回一个pomise对象。因为本身axios处理请求返回的就是promise对象。<br>然后通过promise对象的then方法去处理回调方法。只是如果你需要一个axios的请求，那么就能有继续传递下去。<br>就像jquery的连缀语法一样。所以就是下面那么写。</p>
-<p>then的方法里最好也使用es6的写法来写function,这样的话this的指向就不用再去声明。（就不用在外部写var that = this;）</p>
-<p>那么一开始那个地狱回调就可以这么写</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'/boss'</span>)</span><br><span class="line">.<span class="keyword">then</span>(res =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> axios.get(<span class="string">'/bean'</span>,&#123;</span><br><span class="line">         &#123;bossName:result.name&#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;).<span class="keyword">then</span>(res =&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>这样的话，就方法看似都在同一层级上，从上往下执行。非常清晰。</p>
-<p>还有另外一种方法。</p>
-<h3 id="async和await"><a href="#async和await" class="headerlink" title="async和await"></a>async和await</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">test</span></span>()&#123;</span><br><span class="line">    var response = await axios.get(<span class="string">'/boss'</span>);</span><br><span class="line">    //处理方法</span><br><span class="line">    <span class="keyword">if</span>(response.code == <span class="string">'success'</span>)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这种方法其实，使用的es6的语法。不需要再把方法放到回调函数里去等待请求完成。</p>
-<p>可以直接写在外部。而且会等待await执行结束，才会执行接下去的代码。这种写法也非常直观。但是要求在async函数下。</p>
-<p>基本规则是：</p>
-<pre><code>async 表示这是一个async函数，await只能用在这个函数里面。
-await 表示在这里等待promise返回结果了，再继续执行。
-await 后面跟着的应该是一个promise对象（当然，其他返回值也没关系，只是会立即执行，不过那样就没有意义了…）
-</code></pre><p>详细具体的说明可以自行搜索哦。</p>
--->
-          
+          <p>axios是一个类似于ajax的工具。可以实现与后端数据交互。而且现在在vue官方也推荐使用axios来进行与后端的数据传递与交互。</p>
+<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js中。</p>
+<p>其实axios的使用非常简单。很多的文档，以及一些官方文档已经有很多详细的讲解。<a href="https://www.npmjs.com/package/axios]" target="_blank" rel="noopener">文档地址</a>。我这里就不赘述了。这里我主要讲axios的小小的使用技巧。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/05/axios的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

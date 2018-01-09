@@ -86,10 +86,12 @@
 <meta property="og:site_name" content="波斯豆">
 <meta property="og:description" content="随着现在高级浏览器的使用已经越来越普遍，很多时候我们不需要再进行一些低版本浏览器的兼容。 如拖拽事件，就不需要再使用鼠标事件去控制。 一切都非常的简单。现在有了html5的drag事件和drop事件。可以完成很多的功能。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-08T09:11:23.466Z">
+<meta property="og:image" content="http://yoursite.com/images/gif/drag.gif">
+<meta property="og:updated_time" content="2018-01-09T02:35:07.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单介绍拖拽">
 <meta name="twitter:description" content="随着现在高级浏览器的使用已经越来越普遍，很多时候我们不需要再进行一些低版本浏览器的兼容。 如拖拽事件，就不需要再使用鼠标事件去控制。 一切都非常的简单。现在有了html5的drag事件和drop事件。可以完成很多的功能。">
+<meta name="twitter:image" content="http://yoursite.com/images/gif/drag.gif">
 
 
 
@@ -314,6 +316,8 @@ ondrop 事件：被拖拽的元素在目标元素上同时鼠标放开触发的�
 ondragend 事件：当拖拽完成后触发的事件，此事件作用在被拖曳元素上
 </code></pre><p>如果说在拖拽的时候，想要让这个拖拽的事物放到一个div里，但是div默认是不能拖拽进去。鼠标拖拽进去会显示一个禁止符号。而且也不会触发drop事件。</p>
 <p>要使用这个问题。我们只要在这个div上再绑定一个dragover事件。让他阻止默认事件，即event.preventDefault();<br>这样就拖拽的对象就可以拖进该div中，同时松手后，该div目标对象就会触发drop事件。</p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>下面是我实际项目中需要做的第一个排班表功能需要用到的拖拽功能的效果。</p>
+<p><img src="/images/gif/drag.gif" alt="Image text"></p>
 
       
     </div>
@@ -480,7 +484,7 @@ ondragend 事件：当拖拽完成后触发的事件，此事件作用在被拖�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置可拖拽"><span class="nav-number">1.</span> <span class="nav-text">设置可拖拽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拖拽的事件"><span class="nav-number">2.</span> <span class="nav-text">拖拽的事件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置可拖拽"><span class="nav-number">1.</span> <span class="nav-text">设置可拖拽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拖拽的事件"><span class="nav-number">2.</span> <span class="nav-text">拖拽的事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">3.</span> <span class="nav-text">效果</span></a></li></ol></div>
             
 
           </div>

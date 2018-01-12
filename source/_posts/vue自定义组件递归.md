@@ -108,14 +108,14 @@ title: vue自定义组件递归
                     <!-- 减号，点击后展开收齐该层级下的所有子级 -->
                     <span>{{item.name}}</span>
                 </div>
+                <DepartTree :show="item.active" :list="item.childDepts" 
+                :personlist="item.employees?item.employees:[]" @choose="chooseItem" :chooseId="chooseId"
+                 @choosePerson="choosePerson"></DepartTree>
                 <!-- 员工的数据，放在部门的后面 -->
                 <div class="tree_item clearfix person noson" @click="choosePerson(personItem)" 
                     v-for="personItem in personlist" v-if="personlist && key+1 == list.length">
                     <span>{{personItem.name}}</span>
                 </div>
-                <DepartTree :show="item.active" :list="item.childDepts" 
-                :personlist="item.employees?item.employees:[]" @choose="chooseItem" :chooseId="chooseId"
-                 @choosePerson="choosePerson"></DepartTree>
             </div>
             <!-- 当没有下级部门时，有部门员工的话。则显示该部门的员工 -->
             <div class="tree_list" v-show="show" v-if="personlist && list.length <= 0">

@@ -60,3 +60,38 @@ var result = Array.apply(null,Array(100)).map(function(item,index){
     .sort(()=>0.5-Math.random())
     .filter((v,i) => i<10)
 ```
+
+
+### 快速查找数组符合条件的项
+
+一般来说在vue里面的select数组的数据结构一般是这样的。
+
+```bash
+[{
+    name:'吃饭',
+    val:'1'
+},{
+    name:'睡觉',
+    val:'2'
+},{
+    name:'打豆豆',
+    val:'3'
+}]
+
+```
+
+而v-for的写法如果是在这样
+
+```bash
+    <select v-model="activity">
+        <option :value="item.val" v-for="item in list">{{item.name}}</option>
+    </select>
+```
+
+那么我们拿到的就只是val,那么要如何简便的写法就能拿到val对应的name值呢？
+
+比如我拿到的activity为2，我想知道对应的中文是什么。那么可以这么写。
+
+```bash
+    list.find(item => item.val == 2)['name']
+```

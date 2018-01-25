@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="波斯豆">
 <meta property="og:description" content="其实数组真的有很多妙用的方法来写很多，而且如果巧妙的使用起来，可以用简单的一句代码来实现一些比较复杂的功能。 就像一个简单的功能，不同的人写的代码，有的只要一行，但是有的人可能需要十行。 因此我们都尽量做到用最少的代码实现同样的功能。 这篇文章用来汇总，列举的都是我遇到觉得比较好的数组写法以及数组的一些相关知识。 以后只要有发现新的写法，会不断更新这篇文章。 Array.apply(null, {">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-22T07:47:14.963Z">
+<meta property="og:updated_time" content="2018-01-25T05:54:03.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array数组简单写法汇总">
 <meta name="twitter:description" content="其实数组真的有很多妙用的方法来写很多，而且如果巧妙的使用起来，可以用简单的一句代码来实现一些比较复杂的功能。 就像一个简单的功能，不同的人写的代码，有的只要一行，但是有的人可能需要十行。 因此我们都尽量做到用最少的代码实现同样的功能。 这篇文章用来汇总，列举的都是我遇到觉得比较好的数组写法以及数组的一些相关知识。 以后只要有发现新的写法，会不断更新这篇文章。 Array.apply(null, {">
@@ -312,7 +312,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var result = Array.apply(null,&#123;length:100&#125;).map(<span class="keyword">function</span>(item,index)&#123;</span><br><span class="line">    <span class="built_in">return</span> index+1;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var result = Array.apply(null,Array(100)).map(<span class="keyword">function</span>(item,index)&#123;</span><br><span class="line">    <span class="built_in">return</span> index+1;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <h3 id="随机生成10个1-100的不重复随机数"><a href="#随机生成10个1-100的不重复随机数" class="headerlink" title="随机生成10个1-100的不重复随机数"></a>随机生成10个1-100的不重复随机数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr = new Array(100)</span><br><span class="line">.fill(0)</span><br><span class="line">.map((v,i) =&gt; i+1)</span><br><span class="line">.sort(()=&gt;0.5-Math.random())</span><br><span class="line">.filter((v,i) =&gt; i&lt;10)</span><br></pre></td></tr></table></figure>
-
+<h3 id="快速查找数组符合条件的项"><a href="#快速查找数组符合条件的项" class="headerlink" title="快速查找数组符合条件的项"></a>快速查找数组符合条件的项</h3><p>一般来说在vue里面的select数组的数据结构一般是这样的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    name:<span class="string">'吃饭'</span>,</span><br><span class="line">    val:<span class="string">'1'</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">    name:<span class="string">'睡觉'</span>,</span><br><span class="line">    val:<span class="string">'2'</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">    name:<span class="string">'打豆豆'</span>,</span><br><span class="line">    val:<span class="string">'3'</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>而v-for的写法如果是在这样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;select v-model=<span class="string">"activity"</span>&gt;</span><br><span class="line">    &lt;option :value=<span class="string">"item.val"</span> v-for=<span class="string">"item in list"</span>&gt;&#123;&#123;item.name&#125;&#125;&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<p>那么我们拿到的就只是val,那么要如何简便的写法就能拿到val对应的name值呢？</p>
+<p>比如我拿到的activity为2，我想知道对应的中文是什么。那么可以这么写。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.find(item =&gt; item.val == 2)[<span class="string">'name'</span>]</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -482,7 +488,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-apply-null-length-10-和Array-10-有什么区别"><span class="nav-number">1.</span> <span class="nav-text">Array.apply(null, {length: 10})和Array(10)有什么区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机生成10个1-100的不重复随机数"><span class="nav-number">2.</span> <span class="nav-text">随机生成10个1-100的不重复随机数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-apply-null-length-10-和Array-10-有什么区别"><span class="nav-number">1.</span> <span class="nav-text">Array.apply(null, {length: 10})和Array(10)有什么区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机生成10个1-100的不重复随机数"><span class="nav-number">2.</span> <span class="nav-text">随机生成10个1-100的不重复随机数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速查找数组符合条件的项"><span class="nav-number">3.</span> <span class="nav-text">快速查找数组符合条件的项</span></a></li></ol></div>
             
 
           </div>

@@ -87,7 +87,7 @@
 <meta property="og:description" content="随着现在高级浏览器的使用已经越来越普遍，很多时候我们不需要再进行一些低版本浏览器的兼容。 如拖拽事件，就不需要再使用鼠标事件去控制。 一切都非常的简单。现在有了html5的drag事件和drop事件。可以完成很多的功能。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/gif/drag.gif">
-<meta property="og:updated_time" content="2018-01-09T02:35:07.201Z">
+<meta property="og:updated_time" content="2018-01-26T06:32:28.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单介绍拖拽">
 <meta name="twitter:description" content="随着现在高级浏览器的使用已经越来越普遍，很多时候我们不需要再进行一些低版本浏览器的兼容。 如拖拽事件，就不需要再使用鼠标事件去控制。 一切都非常的简单。现在有了html5的drag事件和drop事件。可以完成很多的功能。">
@@ -315,8 +315,8 @@ ondragover 事件：拖拽元素在目标元素上移动的时候触发的事件
 ondrop 事件：被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上
 ondragend 事件：当拖拽完成后触发的事件，此事件作用在被拖曳元素上
 </code></pre><p>如果说在拖拽的时候，想要让这个拖拽的事物放到一个div里，但是div默认是不能拖拽进去。鼠标拖拽进去会显示一个禁止符号。而且也不会触发drop事件。</p>
-<p>要使用这个问题。我们只要在这个div上再绑定一个dragover事件。让他阻止默认事件，即event.preventDefault();<br>这样就拖拽的对象就可以拖进该div中，同时松手后，该div目标对象就会触发drop事件。</p>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>下面是我实际项目中需要做的第一个排班表功能需要用到的拖拽功能的效果。</p>
+<p>要解决这个问题。我们只要在这个div上再绑定一个dragover事件。让他阻止默认事件，即event.preventDefault();<br>这样就拖拽的对象就可以拖进该div中，同时松手后，该div目标对象就会触发drop事件。</p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>下面是我实际项目中需要做的一个排班表功能需要用到的拖拽功能的效果。</p>
 <p><img src="/images/gif/drag.gif" alt="Image text"></p>
 
       
@@ -435,7 +435,7 @@ ondragend 事件：当拖拽完成后触发的事件，此事件作用在被拖�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

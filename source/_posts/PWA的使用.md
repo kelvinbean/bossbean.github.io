@@ -8,6 +8,8 @@ title:  PWA的使用
 但是最近苹果将在 iOS 11.3 和 macOS 10.13.4 版本上正式增加对 Service Worker 的支持，同时还支持了添加到桌面（Web App Manfiest）.
 让我又重新把目光投放到这个PWA。这将会是又一次的前端大变革。
 
+<!-- More -->
+
 ## 什么是PWA？
 
 PWA全称是Progressive Web Apps,中文翻译过来的名称就是渐进增强的web应用。

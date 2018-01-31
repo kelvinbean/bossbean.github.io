@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/icon.png?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近发现项目越做越大的时候，webpack的打包速度越来越慢。虽然是现在又出现了一个号称比webpack打包快，并且零配置的东西，叫parcel。 但是目前来看，感觉parcel还是在摸索阶段。我也确实尝试了一下，打包确实挺快的。但是不知道会有什么别的意料之外的问题，而且vue-cli目前用的还是webpack打包，所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优化webpack打包速度">
+<meta property="og:url" content="http://yoursite.com/2018/01/30/优化webpack打包速度/index.html">
+<meta property="og:site_name" content="波斯豆">
+<meta property="og:description" content="最近发现项目越做越大的时候，webpack的打包速度越来越慢。虽然是现在又出现了一个号称比webpack打包快，并且零配置的东西，叫parcel。 但是目前来看，感觉parcel还是在摸索阶段。我也确实尝试了一下，打包确实挺快的。但是不知道会有什么别的意料之外的问题，而且vue-cli目前用的还是webpack打包，所以我还是说说怎么提升一下webpack的打包吧。 首先打包速度慢，我们还是要分析">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/img/webpack1.png">
+<meta property="og:updated_time" content="2018-01-31T05:38:48.521Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优化webpack打包速度">
+<meta name="twitter:description" content="最近发现项目越做越大的时候，webpack的打包速度越来越慢。虽然是现在又出现了一个号称比webpack打包快，并且零配置的东西，叫parcel。 但是目前来看，感觉parcel还是在摸索阶段。我也确实尝试了一下，打包确实挺快的。但是不知道会有什么别的意料之外的问题，而且vue-cli目前用的还是webpack打包，所以我还是说说怎么提升一下webpack的打包吧。 首先打包速度慢，我们还是要分析">
+<meta name="twitter:image" content="http://yoursite.com/images/img/webpack1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/30/优化webpack打包速度/"/>
+
+
+
+
+
+  <title>优化webpack打包速度 | 波斯豆</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <img src="/images/long_icon.png">
+        <span class="site-title">波斯豆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一颗待发芽的豆</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/30/优化webpack打包速度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="豆">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bossbean.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="波斯豆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">优化webpack打包速度</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T19:43:41+08:00">
+                2018-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近发现项目越做越大的时候，webpack的打包速度越来越慢。虽然是现在又出现了一个号称比webpack打包快，并且零配置的东西，叫parcel。</p>
+<p>但是目前来看，感觉parcel还是在摸索阶段。我也确实尝试了一下，打包确实挺快的。但是不知道会有什么别的意料之外的问题，而且vue-cli目前用的还是webpack打包，所以我还是说说怎么提升一下webpack的打包吧。</p>
+<p>首先打包速度慢，我们还是要分析一下打包的状况吧。</p>
+<h3 id="webpack-bundle-analyzer"><a href="#webpack-bundle-analyzer" class="headerlink" title="webpack-bundle-analyzer"></a>webpack-bundle-analyzer</h3><p>webpack有个webpack-bundle-analyzer的工具。可以用来分析打包出来的状况。</p>
+<p>其实vue-cli已经给配置并且安装了这个工具，所以不用再自己去安装与配置。</p>
+<a id="more"></a>
+<p>webpack.prod.conf.js里面有着相关配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var config = require(<span class="string">'../config'</span>)</span><br><span class="line"></span><br><span class="line">...//此处省略一万字</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (config.build.bundleAnalyzerReport) &#123;</span><br><span class="line">  var BundleAnalyzerPlugin = require(<span class="string">'webpack-bundle-analyzer'</span>).BundleAnalyzerPlugin</span><br><span class="line">  webpackConfig.plugins.push(new BundleAnalyzerPlugin())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里可以看到config.build.bundleAnalyzerReport如果为true，那么就会执行这个分析工具。很明显默认为false.</p>
+<p>顺着上面的内容找到了config目录下的index.js文件。</p>
+<p>ok,发现此处的bundleAnalyzerReport，这一项的赋值是process.env.npm_config_report这个。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">    env: require(<span class="string">'./prod.env'</span>),</span><br><span class="line">    index: path.resolve(__dirname, <span class="string">'../dist/index.html'</span>),</span><br><span class="line">    assetsRoot: path.resolve(__dirname, <span class="string">'../dist'</span>),</span><br><span class="line">    assetsSubDirectory: <span class="string">'static'</span>,</span><br><span class="line">    assetsPublicPath: <span class="string">'./'</span>,//kelvin修改的</span><br><span class="line">    productionSourceMap: <span class="literal">false</span>,</span><br><span class="line">    // Gzip off by default as many popular static hosts such as</span><br><span class="line">    // Surge or Netlify already gzip all static assets <span class="keyword">for</span> you.</span><br><span class="line">    // Before setting to `<span class="literal">true</span>`, make sure to:</span><br><span class="line">    // npm install --save-dev compression-webpack-plugin</span><br><span class="line">    productionGzip: <span class="literal">false</span>,</span><br><span class="line">    productionGzipExtensions: [<span class="string">'js'</span>, <span class="string">'css'</span>],</span><br><span class="line">    // Run the build <span class="built_in">command</span> with an extra argument to</span><br><span class="line">    // View the bundle analyzer report after build finishes:</span><br><span class="line">    // `npm run build --report`</span><br><span class="line">    // Set to `<span class="literal">true</span>` or `<span class="literal">false</span>` to always turn it on or off</span><br><span class="line">    bundleAnalyzerReport: process.env.npm_config_report</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>所以我们在package.json文件的scripts加入新的命令。用来方便我们以后分析时直接用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"analyz"</span>: <span class="string">"set NODE_ENV=production &amp;&amp; set npm_config_report=true &amp;&amp; npm run build"</span>,</span><br></pre></td></tr></table></figure>
+<p>网上很多的资料都是省去了set，估计是版本不一样的问题，我直接写会报错。<br>这里的命令就是设置当前的环境是生产环境，并且设置npm_config_report为true，然后执行build.</p>
+<p>就这样。执行以下命令我们调出了分析的页面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run analyz</span><br></pre></td></tr></table></figure>
+<p>你的分析页面大概长这样。</p>
+<p><img src="/images/img/webpack1.png" alt="Image text"></p>
+<p>上面是我的现在优化后的图片。显示块越大，代表合出来的文件越大。你可以看出一些端疑。</p>
+<p>优化前，我也分析出，我之前使用的echarts文件还有都被合到了多个文件里面，而且文件都特别大。这些代码还是一样的。这样的事情我肯定不能忍啦。</p>
+<p>另外我还发现我使用的ueditor也被打包进去了。然而我并不需要打包它。因这种种原因，我们就分析出了打包那么慢的原因了。</p>
+<h3 id="设置不打包ueditor"><a href="#设置不打包ueditor" class="headerlink" title="设置不打包ueditor"></a>设置不打包ueditor</h3><p>先解决这个比较简单的。</p>
+<p>看过我之前写的那篇<a href="http://www.bossbean.com/2018/01/25/vue%E9%A1%B9%E7%9B%AE%E5%BC%95%E5%85%A5ueditor/" target="_blank" rel="noopener">编写ueditor的文章</a>就知道。</p>
+<p>我在写editor组件的时候，才引入这些ueditor组件的。因此，删掉editor组件里面引用ueditor插件的那些import。</p>
+<p>把它放到根目录下的index.html里。以script的形式引入。当然使用cdn的话就更好了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"./static/plugins/utf8-jsp/ueditor.config.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"./static/plugins/utf8-jsp/ueditor.all.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"./static/plugins/utf8-jsp/lang/zh-cn/zh-cn.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"./static/plugins/utf8-jsp/ueditor.parse.min.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>因为ueditor会设置一个全局变量UE，那么为了防止打包的时候报错，我们需要再build文件夹里module.exports上加上。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">externals:&#123;</span><br><span class="line">   UE:<span class="string">'UE'</span></span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<p>官网文档解释的很清楚，就是webpack可以不处理应用的某些依赖库，使用externals配置后，依旧可以在代码中通过CMD、AMD或者window/global全局的方式访问。</p>
+<p>so，没有压缩这个编辑器，速度提升了。</p>
+<h3 id="DllPlugin-和-DllReferencePlugin"><a href="#DllPlugin-和-DllReferencePlugin" class="headerlink" title="DllPlugin 和 DllReferencePlugin"></a>DllPlugin 和 DllReferencePlugin</h3><p>DllPlugin 可以把我们需要打包的第三方库打包成一个 js 文件和一个 json 文件，这个 json 文件中会映射每个打包的模块地址和 id，DllReferencePlugin 通过读取这个json文件来使用打包的这些模块。</p>
+<p>接下来，解决echarts的问题。</p>
+<p>看过我之前关于<a href="http://www.bossbean.com/2017/12/29/%E5%9C%A8vue%E9%87%8C%E4%BD%BF%E7%94%A8echarts/" target="_blank" rel="noopener">echarts的文章</a>，就可以知道我们在使用的vue-echarts-v3，已经是封装成了vue的组件了。所以每次引入都就会把这些相同的代码打包进去。这样打包出来的文件很大，同时也影响速度。</p>
+<p>在 build 文件夹中新建 webpack.dll.conf.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const path = require(<span class="string">'path'</span>);</span><br><span class="line">const webpack = require(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    vendor: [<span class="string">'vue/dist/vue.common.js'</span>,<span class="string">'vue-router'</span>, <span class="string">'babel-polyfill'</span>,<span class="string">'axios'</span>,<span class="string">'vue-echarts-v3'</span>,<span class="string">'vue-ba'</span>,<span class="string">'vue-uweb'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname, <span class="string">'../static/js'</span>),</span><br><span class="line">    filename: <span class="string">'[name].dll.js'</span>,</span><br><span class="line">    library: <span class="string">'[name]_library'</span>       // vendor.dll.js中暴露出的全局变量名</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new webpack.DllPlugin(&#123;</span><br><span class="line">      path: path.join(__dirname, <span class="string">'.'</span>, <span class="string">'[name]-manifest.json'</span>),</span><br><span class="line">      name: <span class="string">'[name]_library'</span></span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">      compress: &#123;</span><br><span class="line">        warnings: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里把我项目需要用到的第三方库我都写了进去。</p>
+<p>然后在 package.json 中再加个配置命令，也是方便我们以后使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">"build:dll"</span>: <span class="string">"webpack --config build/webpack.dll.conf.js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行 npm run build:dll 命令来生成 vendor.dll.js 和 vendor-manifest.json</p>
+<p>需要在 index.html 引入 vendor.dll.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"./static/js/vendor.dll.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>vendor-manifest.json 文件生成我们不需要管它，在打包的时候DllReferencePlugin会自动去读取。</p>
+<p>接下来就在 webpack.base.config.js 中通过 DLLReferencePlugin 来使用 DllPlugin 生成的 DLL Bundle</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var webpack = require(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        app: [<span class="string">'./src/main.js'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    // 添加DllReferencePlugin插件</span><br><span class="line">    plugins: [</span><br><span class="line">        new webpack.DllReferencePlugin(&#123;</span><br><span class="line">            context: path.resolve(__dirname, <span class="string">'..'</span>),</span><br><span class="line">            manifest: require(<span class="string">'./vendor-manifest.json'</span>)</span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就这样大功告成。。我再次使用npm run build。比以前快了70%。</p>
+<p>原因是你已经把你需要用的第三方库都打包了，然后打包的时候就不需要再去打包这些库。从而减少了文件的大小，而且也打包速度也变快了。</p>
+<p>但是如果你又要引入新的第三方库的话，需要再去webpack.dll.conf.js里面去添加vendor。</p>
+<p>然后再去执行一遍npm run build:dll 。生成的新的vendor.dll.js和manifest.json。然后再提交上去。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>当然还有非常多的方法可以提升webpack打包速度。我这里只是简单的介绍我使用的方法。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/29/PWA的使用/" rel="next" title="PWA的使用">
+                <i class="fa fa-chevron-left"></i> PWA的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/bossbean.png"
+                alt="豆" />
+            
+              <p class="site-author-name" itemprop="name">豆</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kelvinbean" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:260254788@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-bundle-analyzer"><span class="nav-number">1.</span> <span class="nav-text">webpack-bundle-analyzer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置不打包ueditor"><span class="nav-number">2.</span> <span class="nav-text">设置不打包ueditor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DllPlugin-和-DllReferencePlugin"><span class="nav-number">3.</span> <span class="nav-text">DllPlugin 和 DllReferencePlugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+      <div style="margin-top:20px">
+        <span>网站吐槽：</span>
+        <a href="https://support.qq.com/products/20694" target="_blank">
+          <span class="btn">
+            <i class="fa fa-comment-o"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">豆</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

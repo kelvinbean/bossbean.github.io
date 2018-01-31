@@ -79,19 +79,26 @@
 
 
 
-<meta name="description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中">
+<meta name="description" content="其实我还挺欣赏懒惰的程序员的，当然不是说懒惰就是不做事，而是他们为了减少麻烦，会去思考怎么做才能减少这些重复的人为操作，从而制定出非常多为其他开发者带来便利的东西。 今天讲的当然没有很宏观的东西，只是一个很小的事情。 严格意义来说，这篇文章跟前端没什么太大关系。但是我觉得却很有用。 excel表格很多人都用过，但是却不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FileReader的使用">
-<meta property="og:url" content="http://yoursite.com/2017/12/06/FileReader的使用/index.html">
+<meta property="og:title" content="巧用EXCEL处理数据">
+<meta property="og:url" content="http://yoursite.com/2018/01/31/巧用Excel处理数据/index.html">
 <meta property="og:site_name" content="波斯豆">
-<meta property="og:description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中断读取 readAsBinaryString  file">
+<meta property="og:description" content="其实我还挺欣赏懒惰的程序员的，当然不是说懒惰就是不做事，而是他们为了减少麻烦，会去思考怎么做才能减少这些重复的人为操作，从而制定出非常多为其他开发者带来便利的东西。 今天讲的当然没有很宏观的东西，只是一个很小的事情。 严格意义来说，这篇文章跟前端没什么太大关系。但是我觉得却很有用。 excel表格很多人都用过，但是却不是所有人都知道它还有非常多的其他的用途。 今天我就来讲它的一个很简单的用途。就是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/fileReader/FileReader_source.png">
-<meta property="og:updated_time" content="2017-12-26T06:23:32.586Z">
+<meta property="og:image" content="http://yoursite.com/images/img/excel1.png">
+<meta property="og:image" content="http://yoursite.com/images/img/excel2.gif">
+<meta property="og:image" content="http://yoursite.com/images/img/excel3.gif">
+<meta property="og:image" content="http://yoursite.com/images/img/excel4.gif">
+<meta property="og:image" content="http://yoursite.com/images/img/excel5.gif">
+<meta property="og:image" content="http://yoursite.com/images/img/excel6.gif">
+<meta property="og:image" content="http://yoursite.com/images/img/excel7.gif">
+<meta property="og:image" content="http://yoursite.com/images/img/excel8.gif">
+<meta property="og:updated_time" content="2018-01-31T11:50:07.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FileReader的使用">
-<meta name="twitter:description" content="FileReader是HTML5就已经提出的一个用于处理上传文件的对象。 它使得我们在处理文件上变得更加简单了。 简单介绍调用FileReader实例对象的方法方法名              参数                 描述 abort               none                中断读取 readAsBinaryString  file">
-<meta name="twitter:image" content="http://yoursite.com/images/fileReader/FileReader_source.png">
+<meta name="twitter:title" content="巧用EXCEL处理数据">
+<meta name="twitter:description" content="其实我还挺欣赏懒惰的程序员的，当然不是说懒惰就是不做事，而是他们为了减少麻烦，会去思考怎么做才能减少这些重复的人为操作，从而制定出非常多为其他开发者带来便利的东西。 今天讲的当然没有很宏观的东西，只是一个很小的事情。 严格意义来说，这篇文章跟前端没什么太大关系。但是我觉得却很有用。 excel表格很多人都用过，但是却不是所有人都知道它还有非常多的其他的用途。 今天我就来讲它的一个很简单的用途。就是">
+<meta name="twitter:image" content="http://yoursite.com/images/img/excel1.png">
 
 
 
@@ -121,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/06/FileReader的使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/31/巧用Excel处理数据/"/>
 
 
 
 
 
-  <title>FileReader的使用 | 波斯豆</title>
+  <title>巧用EXCEL处理数据 | 波斯豆</title>
   
 
 
@@ -235,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/FileReader的使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/31/巧用Excel处理数据/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="豆">
@@ -252,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">FileReader的使用</h1>
+          <h1 class="post-title" itemprop="name headline">巧用EXCEL处理数据</h1>
         
 
         <div class="post-meta">
@@ -264,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T16:53:11+08:00">
-                2017-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T14:13:08+08:00">
+                2018-01-31
               </time>
             
 
@@ -302,32 +309,49 @@
       
 
       
-        <p>FileReader是HTML5就已经提出的一个用于处理上传文件的对象。</p>
-<p>它使得我们在处理文件上变得更加简单了。</p>
-<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><h3 id="调用FileReader实例对象的方法"><a href="#调用FileReader实例对象的方法" class="headerlink" title="调用FileReader实例对象的方法"></a>调用FileReader实例对象的方法</h3><pre><code>方法名              参数                 描述
-abort               none                中断读取
-readAsBinaryString  file                将文件读取为二进制码
-readAsDataURL       file                将文件读取为 DataURL
-readAsText          file, [encoding]    将文件读取为文本
-</code></pre><a id="more"></a>
-<p>readAsText：该方法有两个参数，其中第二个参数是文本的编码方式，默认值为 UTF-8。<br>这个方法非常容易理解，将文件以文本方式读取，读取的结果即是这个文本文件中的内容。<br>readAsBinaryString：该方法将文件读取为二进制字符串，通常我们将它传送到后端，后端可以通过这段字符串存储文件。<br>readAsDataURL：这是例子程序中用到的方法，该方法将文件读取为一段以 data: 开头的字符串，这段字符串的实质就是 Data URL，<br>Data URL是一种将小文件直接嵌入文档的方案。这里的小文件通常是指图像与 html 等格式的文件。</p>
-<h3 id="处理事件"><a href="#处理事件" class="headerlink" title="处理事件"></a>处理事件</h3><p>FileReader 包含了一套完整的事件模型，用于捕获读取文件时的状态，下面这个表格归纳了这些事件。</p>
-<pre><code>事件         描述
-onabort      中断时触发
-onerror      出错时触发
-onload       文件读取成功完成时触发
-onloadend    读取完成触发，无论成功或失败
-onloadstart  读取开始时触发
-onprogress   读取中
-</code></pre><h2 id="实例运用"><a href="#实例运用" class="headerlink" title="实例运用"></a>实例运用</h2><h3 id="上传文件显示图片"><a href="#上传文件显示图片" class="headerlink" title="上传文件显示图片"></a>上传文件显示图片</h3><p>一般的上传图片的处理都是把文件提交上去。之后让后端返回一个完整的url。然后再生成img标签，把url填进去。从而显示上传的图片。</p>
-<p>那如果想要一上传，不需要等待服务器响应就显示出上传的图片这要这么做呢？</p>
-<p>可以使用如下的方法:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">html代码：</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"file"</span> id=<span class="string">"file"</span> onchange=<span class="string">"fileChange(this)"</span>&gt;</span><br><span class="line">&lt;div id=<span class="string">"result"</span>&gt;&lt;/div&gt;</span><br><span class="line">用onchange绑定一个叫fileChange的<span class="keyword">function</span>,把本对象传入</span><br><span class="line"></span><br><span class="line">js代码：</span><br><span class="line"><span class="keyword">function</span> fileChange(<span class="built_in">source</span>)&#123;</span><br><span class="line">    console.log(source.files)</span><br><span class="line">    var file = source.files[0];</span><br><span class="line">    var reader = new FileReader();</span><br><span class="line">    reader.onloadend = <span class="function"><span class="title">function</span></span>()&#123;//reader读取完成后触发，无论成功或失败</span><br><span class="line">        console.log(this.result);//读取完成后的结果在result里获取</span><br><span class="line">        var img = new Image();</span><br><span class="line">        img.src = this.result;</span><br><span class="line">        document.getElementById(<span class="string">'result'</span>).append(img);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    reader.readAsDataURL(file);//读取文件As DataURL,触发onload和ondloadend，无论读取成功或失败，方法并不会返回读取结果，这一结果存储在 result属性中。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如下是打印出来的source.files的信息</p>
-<p><img src="/images/fileReader/FileReader_source.png" alt="Image text"></p>
-<p>其实就是个类似数组的对象，有最后的修改日期信息，文件名称，文件大小，文件的MIME类型等</p>
-<p>上面的代码。只是简单举个例子，那文件数组的第一个对象，然后实例一个FileReader对象。<br>然后再给reader绑定一个加载后的时间。然后通过reader.readAsDataURL(file)把刚刚取到的第一个对象传入。readAsDataURL加载结束后就会触发刚刚上面绑定的onloadend方法。</p>
-<p>onloadend可以通过this.result查看结果。<br>这里获取到的就是要给img需要的url。<br>其实readAsDataURLjiu就是把这个文件转出base64的格式然后创建img.把图片加载到div里任务就完成了。</p>
+        <p>其实我还挺欣赏懒惰的程序员的，当然不是说懒惰就是不做事，而是他们为了减少麻烦，会去思考怎么做才能减少这些重复的人为操作，从而制定出非常多为其他开发者带来便利的东西。</p>
+<p>今天讲的当然没有很宏观的东西，只是一个很小的事情。</p>
+<p>严格意义来说，这篇文章跟前端没什么太大关系。但是我觉得却很有用。</p>
+<p>excel表格很多人都用过，但是却不是所有人都知道它还有非常多的其他的用途。</p>
+<p>今天我就来讲它的一个很简单的用途。就是把word的提供的数据，转变成想要的数组格式。</p>
+<a id="more"></a>
+<h3 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h3><p>最近项目中，产品经理丢给我一个数据，是国家和区号的一一对应的。</p>
+<pre><code>埃及   +20
+奥地利 +43
+阿根廷 +54
+澳大利亚 +61
+阿富汗 +93
+阿尔及利亚 +213
+安哥拉 +244
+阿森松 +247
+埃塞俄比亚 +251
+爱尔兰 +353
+阿尔巴尼亚 +355
+爱沙尼亚 +372
+安道尔共和国 +376
+澳门 +853
+阿曼 +968
+...
+</code></pre><p>然而我项目中需要把他给我的这个word文档的内容转成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    name:<span class="string">"埃及"</span>,</span><br><span class="line">    value:<span class="string">"+20"</span></span><br><span class="line">&#125;,...]</span><br></pre></td></tr></table></figure>
+<p>然而数据之多，处理起来真的很烦。那怎么办呢？我们可以用excel来解决。</p>
+<h3 id="excel的巧用"><a href="#excel的巧用" class="headerlink" title="excel的巧用"></a>excel的巧用</h3><p>首先先把word的数据复制到excel上。粘贴选项选择匹配目标格式。</p>
+<p><img src="/images/img/excel1.png" alt="image text"></p>
+<p>然后分列，由于我这个数据是文字中间是空格做间隙的。所以分列的时候勾上空格，需要注意的是我这里要因为有个+号，所以要设置第二列为文本格式，不然+号就没了。</p>
+<p><img src="/images/img/excel2.gif" alt="image text"></p>
+<p>第三步就是添加列，给需要添加文字的位置插入列</p>
+<p><img src="/images/img/excel3.gif" alt="image text"></p>
+<p>下一步就是在列里面填入所需的格式内容。这里注意，单元格的首字符是单引号的时候这个单引号会隐藏，所以这里C列和E列开始我都是敲的是两个单引号。</p>
+<p><img src="/images/img/excel4.gif" alt="image text"></p>
+<p>然后，我们在对excel需要换行的地方输入换行符。excel的换行符是alt+enter键。然后双击右下角，让每一列都引入数据。</p>
+<p><img src="/images/img/excel5.gif" alt="image text"></p>
+<p>最后在数据再数据列后面随意选一列来写下表达式。如下图。输完后按enter键。然后再双击生成出所有的数据</p>
+<p><img src="/images/img/excel6.gif" alt="image text"></p>
+<p>就这样。这个数据就获取到了，然后再复制出来。放到word里，直接复制到sublime，可能会有格式问题。</p>
+<p><img src="/images/img/excel7.gif" alt="image text"></p>
+<p>最后复制到sublime,然后alt+F3选中全部，加tab就获取到一个你要的格式的数组了。</p>
+<p><img src="/images/img/excel8.gif" alt="image text"></p>
+<p>好了，大功告成！</p>
 
       
     </div>
@@ -352,15 +376,15 @@ onprogress   读取中
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/01/30/优化webpack打包速度/" rel="next" title="优化webpack打包速度">
+                <i class="fa fa-chevron-left"></i> 优化webpack打包速度
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/07/答对6个算我输/" rel="prev" title="答对6个算我输。">
-                答对6个算我输。 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -494,7 +518,7 @@ onprogress   读取中
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用FileReader实例对象的方法"><span class="nav-number">1.1.</span> <span class="nav-text">调用FileReader实例对象的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理事件"><span class="nav-number">1.2.</span> <span class="nav-text">处理事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例运用"><span class="nav-number">2.</span> <span class="nav-text">实例运用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上传文件显示图片"><span class="nav-number">2.1.</span> <span class="nav-text">上传文件显示图片</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#举个栗子"><span class="nav-number">1.</span> <span class="nav-text">举个栗子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#excel的巧用"><span class="nav-number">2.</span> <span class="nav-text">excel的巧用</span></a></li></ol></div>
             
 
           </div>

@@ -202,7 +202,91 @@ module.exports = {
 
 但是如果你又要引入新的第三方库的话，需要再去webpack.dll.conf.js里面去添加vendor。
 
-然后再去执行一遍npm run build:dll 。生成的新的vendor.dll.js和manifest.json。然后再提交上去。
+然后再去执行一遍npm run build:dll 。生成的新的vendor.dll.js和manifest.json。然后再提交上去。当然也要考虑考虑vendor.dll.js文件如果太大会影响首屏 加载时间的问题。
+
+
+### webpack-parallel-uglify-plugin
+
+本地的速度是提上去了，但是发现用jenkins的来一键打包发布的时候，感觉服务器打包的时间还是太长了。因此我继续想怎么去优化。
+
+这时候我找到了webpack-parallel-uglify-plugin这个插件。
+
+webpack提供的UglifyJS插件由于采用单线程压缩，速度很慢 ,
+
+webpack-parallel-uglify-plugin插件可以并行运行UglifyJS插件，这可以有效减少构建时间。
+
+webpack-parallel-uglify-plugin的是实现原理是采用了多核并行压缩的方式来提升我们的压缩速度。
+
+使用方法也很简单。
+
+安装webpack-parallel-uglify-plugin
+
+```bash
+  npm install webpack-parallel-uglify-plugin --save-dev
+```
+
+
+修改webpack.prod.conf.js文件
+
+```bash
+
+var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+
+  plugins: [
+    ...
+    ...
+    // 删掉webpack提供的UglifyJS插件
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false,
+    //     drop_console: true
+    //   },
+    //   sourceMap: true
+    // }),
+    // 增加 webpack-parallel-uglify-plugin来替换
+    new ParallelUglifyPlugin({
+      cacheDir: '.cache/',
+      uglifyJS:{
+        output: {
+          comments: false
+        },
+        compress: {
+          warnings: false,
+          drop_debugger: true,
+          drop_console: true
+        }
+      }
+    }),
+  ]
+
+```
+
+然后运行npm run build,你会发现速度提升了很多，但是第一次打包还是会比较慢，第二次打包就会很快。
+这种打包貌似也有借用缓存的机制，所以打包完会有一个.cache文件夹。所以每次修改打包文件的话的第一次打包花的时间都是比较长的。
+
+注意：打包完会有一个.cache文件夹。这个文件夹为了不要检测提交，所以也要在.gitignore文件加上.cache/
+
+
+### 设置cacheDirectory为true
+
+其实打包时间长很多时候是babel-loader执行的很慢，所以不仅要使用exclude、include，尽可能准确的指定要转化内容的范畴，而且要充分利用缓存，进一步提升性能。babel-loader 提供了 cacheDirectory特定选项（默认 false）：设置时，给定的目录将用于缓存加载器的结果。
+
+cacheDirectory：默认值为 false。当有设置时，指定的目录将用来缓存 loader 的执行结果。之后的 webpack 构建，将会尝试读取缓存，来避免在每次执行时，可能产生的、高性能消耗的 Babel 重新编译过程(recompilation process)。如果设置了一个空值 (loader: 'babel-loader?cacheDirectory') 或者 true (loader: babel-loader?cacheDirectory=true)，loader 将使用默认的缓存目录 node_modules/.cache/babel-loader，如果在任何根目录下都没有找到 node_modules 目录，将会降级回退到操作系统默认的临时文件目录。
+
+所以在webpack.base.conf.js文件的rules的对js文件处理那里做修改。加上exclude，避免扫描无需打包的node_modules文件夹。
+
+```bash
+  rules:[{
+    test: /\.js$/,
+    loader: 'babel-loader?cacheDirectory=true',
+    exclude: /node_modules/,
+    include: [resolve('src'), resolve('test'), resolve('node_modules/vue-echarts-v3/src')]
+  }]
+```
+
+
+
+然后试加上上面两种配置，服务器打包果然变得很快。ok，搞定，收工。
 
 
 ### 总结

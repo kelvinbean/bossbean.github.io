@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="波斯豆">
 <meta property="og:description" content="正则表达式的用处真的很多很多。可以用来验证字段，批量处理文件内容，快速查询想要的信息，处理数据为自己想要的样子。 感觉非常的好用和有用。无论是前端后端，运维等等都离不开正则表达式。它可以让我们很多的工作事半功倍，而且减少很多代码量。 好，说了那么多。但是我这里并不介绍正则表达式的基本的几个东西的表达。我主要讲一个符号。就是？ 因为这个符号（？）真的比较难理解啊，官方的解释也不是很好懂。我也是反复看">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-11T07:31:10.024Z">
+<meta property="og:updated_time" content="2018-02-22T09:36:44.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式之问号篇">
 <meta name="twitter:description" content="正则表达式的用处真的很多很多。可以用来验证字段，批量处理文件内容，快速查询想要的信息，处理数据为自己想要的样子。 感觉非常的好用和有用。无论是前端后端，运维等等都离不开正则表达式。它可以让我们很多的工作事半功倍，而且减少很多代码量。 好，说了那么多。但是我这里并不介绍正则表达式的基本的几个东西的表达。我主要讲一个符号。就是？ 因为这个符号（？）真的比较难理解啊，官方的解释也不是很好懂。我也是反复看">
@@ -310,7 +310,7 @@
 <a id="more"></a>
 <h3 id="-1"><a href="#-1" class="headerlink" title="?:"></a>?:</h3><p>这个组合(?:)其实加了和没加都是一个意思。不会影响正则表达式的原本意思。</p>
 <p>你肯定有疑问,那为什么要有这个组合？</p>
-<p>它还是有用的。因为了解正则里面加了括号都会被认为是一组数据。</p>
+<p>它还是有用的。因为正则里面加了括号都会被认为是一组数据。</p>
 <p>举个栗子：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'a,b'</span>.replace(/^(\w+),(\w+)$/,<span class="string">'$2,$1'</span>)</span><br></pre></td></tr></table></figure>
 <p>这个得到的结果就是b,a</p>
@@ -325,8 +325,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^(\w+)\1$/.<span class="built_in">test</span>(<span class="string">'hellohello'</span>)  //<span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <h3 id="和-lt"><a href="#和-lt" class="headerlink" title="?= 和 ?&lt;="></a>?= 和 ?&lt;=</h3><p>前面真的扯太多了，后面我加快进度讲。</p>
 <p>同样的<strong>只要加了问号在前面的组合，这种都会被认为是不需要组合的</strong>，只是说 <strong>(?:)</strong> 没有别的特殊含义，别的组合还是有各自的含义的。</p>
-<p>如 <strong>(?=bean)</strong> 表示匹配以bean结尾的前面部分（匹配到的内容不包含bean）,一般是加在所要匹配内容的<strong>后面</strong>。（/\b\w+(?=ing\b)/）</p>
-<p>而 <strong>(?&lt;=bean)</strong> 表示匹配以bean结尾的后面部分（匹配到的内容不包含bean）,一般是加在所要匹配的内容<strong>前面</strong>。（(?&lt;=\bre)\w+\b)/）</p>
+<p>如 <strong>(?=bean)</strong> 表示匹配以bean结尾的前面部分（匹配到的内容不包含bean）,一般是加在所要匹配内容的<strong>后面</strong>。<br>（/\b\w+(?=bean\b)/）</p>
+<p>而 <strong>(?&lt;=bean)</strong> 表示匹配以bean结尾的后面部分（匹配到的内容不包含bean）,一般是加在所要匹配的内容<strong>前面</strong>。<br>（(?&lt;=\bbean)\w+\b)/）</p>
 <p>实例栗子：比如你要批量修改一篇文章中的出现的“编辑文章”，“编辑数据”改成“修改文章”，“修改数据”。</p>
 <p>那么我们可以这么写。假设str是文章的内容字符串。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.replace(/编辑(?=(文章|数据))/g,<span class="string">'修改'</span>)</span><br></pre></td></tr></table></figure>
@@ -348,11 +348,11 @@
 <p>举个栗子：如果有这样的一个字符串”编辑文章编辑数据”</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"编辑文章编辑数据"</span>.replace(/编辑([\u4e00-\u9fa5]+)/g,<span class="string">'修改$1'</span>); // 结果：<span class="string">"修改文章编辑数据"</span></span><br></pre></td></tr></table></figure>
 <p>ps: [\u4e00-\u9fa5]代表在中文字，是中文字符的范围。</p>
-<p>为什么会这样的。首先因为默认是贪婪匹配，所以会匹配到最长的组合$1就是”文章编辑数据”,就变成了”修改文章编辑数据”，后面的那个编辑就没有修改过来了。</p>
+<p>为什么结果会这样的。首先因为默认是贪婪匹配，所以会匹配到最长的组合$1就是”文章编辑数据”,就变成了”修改文章编辑数据”，后面的那个编辑就没有修改过来了。</p>
 <p>如果这样：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"编辑文章编辑数据"</span>.replace(/编辑([\u4e00-\u9fa5]+?)/g,<span class="string">'修改$1'</span>); // 结果：<span class="string">"修改文章编辑数据"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"编辑文章编辑数据"</span>.replace(/编辑([\u4e00-\u9fa5]+?)/g,<span class="string">'修改$1'</span>); // 结果：<span class="string">"修改文章修改数据"</span></span><br></pre></td></tr></table></figure>
 <p>这样，它就会尽可能地匹配更少的，所以它会匹配的两个，一个是“编辑文”，一个是“编辑数”，然后把他们都修改成“修改文”和“修改数”</p>
-<p>所以结果就变成了“修改文章编辑数据”。我不知道我的栗子取得恰不恰当。但是一般这种的话会限制头和尾，这样的匹配会更加精准。</p>
+<p>所以结果就变成了“修改文章修改数据”。我不知道我的栗子取得恰不恰当。但是一般这种的话会限制头和尾，这样的匹配会更加精准。</p>
 <p>如：a.*?b匹配最短的，以a开始，以b结束的字符串。如果把它应用于aabab的话，它会匹配aab（第一到第三个字符）和ab（第四到第五个字符）。</p>
 <h3 id="n-m-和-n"><a href="#n-m-和-n" class="headerlink" title="?? , {n,m}? 和 {n,}?"></a>?? , {n,m}? 和 {n,}?</h3><p> 剩下就很好理解了</p>
 <p> ??     重复0次或1次，但尽可能少重复<br>{n,m}?  重复n到m次，但尽可能少重复<br>{n,}?   重复n次以上，但尽可能少重复</p>
